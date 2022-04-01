@@ -1,0 +1,70 @@
+﻿@model GeneralInsuranceProject.Models.RegistrationInfo
+
+@{
+    ViewBag.Title = "RegistrationDetails";
+}
+
+<h2>Registration</h2>
+
+<div class="row justify-content-md-center">
+    <div class="col-md-5">
+        @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+        {
+            @Html.ValidationSummary()
+            @Html.AntiForgeryToken()
+
+            <div class="Register">
+                <div class="Register-body">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.CustomerName)
+                        @Html.TextBoxFor(m => m.CustomerName, "", new { @class = "form-control", @placeholder = "CustomerName" })
+                        @Html.ValidationMessageFor(m => m.CustomerName, "", new { @class = "badge badge-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, "", new { @class = "form-control", @placeholder = "Email" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "badge badge-danger" })
+                        @if (ViewBag.error != null)
+                        {
+                            <span class="badge badge-danger">@ViewBag.error</span>
+                        }
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.DOB)
+                        @Html.TextBoxFor(m => m.DOB, "", new { @class = "form-control", @placeholder = "DOB" })
+                        @Html.ValidationMessageFor(m => m.DOB, "", new { @class = "badge badge-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.PhoneNumber)
+                        @Html.TextBoxFor(m => m.PhoneNumber, "", new { @class = "form-control", @placeholder = "PhoneNumber" })
+                        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "badge badge-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Address)
+                        @Html.TextBoxFor(m => m.Address, "", new { @class = "form-control", @placeholder = "Address" })
+                        @Html.ValidationMessageFor(m => m.Address, "", new { @class = "badge badge-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "badge badge-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Confirm_Password)
+                        @Html.PasswordFor(m => m.Confirm_Password, new { @class = "form-control", @placeholder = "Confim Password" })
+                        @Html.ValidationMessageFor(m => m.Confirm_Password, "", new { @class = "badge badge-danger" })
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit" class="btn btn-info" value="Register" />
+                    </div>
+                </div>
+            </div>
+
+        }
+        <div>
+            @Html.ActionLink("Back to HomePage", "Index")
+        </div>
+    </div>
+</div>
+
